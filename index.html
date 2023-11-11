@@ -3,6 +3,15 @@
   <head>
     <title>WAX All Access Cloud Wallet Login</title>
     <script src="wax.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8N4S1TTBZ4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8N4S1TTBZ4');
+</script>
   </head>
   <body>
     <h1>WAX All Access Cloud Wallet Login</h1>
@@ -13,7 +22,7 @@ const wax = new waxjs.WaxJS({
       });
 //automatically check for credentials autoLogin(); 
 //checks if autologin is available 
-  async function login() 
+  async function login()
   { 
     try { //if autologged in, this simply returns the userAccount w/no popup 
       let userAccount = await wax.login(); 
@@ -21,7 +30,8 @@ const wax = new waxjs.WaxJS({
       let str = 'Account: ' + userAccount + 'Active: ' + pubKeys[0] + 'Owner: ' + pubKeys[1] ;
       document.getElementById('loginresponse').insertAdjacentHTML('beforeend', str);
     } catch (e) {
-      document.getElementById('loginresponse').append(e.message); 
+      document.getElementById('loginresponse').append(e.message);
+
     } 
   } 
 
