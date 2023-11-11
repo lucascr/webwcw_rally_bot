@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style type="text/css">
+      #map-info-container #map{
+          height: 100%;
+          width: 100%;
+          background-color: white;
+      }
+      #controls .visible-layer a:link{
+          color: 'black';
+      }
+      #controls .hidden-layer a:link{
+          color: 'red';
+      }
+      #map-info-container{
+          height: 100%;
+          width: 100%;
+          position: absolute;
+      }
+      #map-info-container #info{
+          width: 25%;
+          right: 0;
+          position: absolute;
+          z-index: 2;
+      }
+  </style>
+  
     <title>WAX All Access Cloud Wallet Login</title>
     <script src="wax.js"></script>
     <!-- Google tag (gtag.js) -->
@@ -34,6 +59,9 @@ const wax = new waxjs.WaxJS({
 
     } 
   } 
+  let params = new URLSearchParams(window.location.search);
+  let param1 = params.get('uid'); // "value1"
+  document.getElementById('loginresponse').insertAdjacentHTML('beforeend', "UID: "+param1);
 
     </script>
     <div id="loginresponse"></div>
