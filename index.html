@@ -26,8 +26,18 @@
     <h1>WAX All Access Cloud Wallet Login</h1>    
     <script>  
   window.onload = function() {
+    function load_wax(){
+      let params = new URLSearchParams(window.location.search);
+      let param_uid = params.get('uid'); // "value uid"
+      console.log("UID: "+param_uid);
 
-    const wax = new waxjs.WaxJS({
+      // Set the value of the uid input field
+      document.getElementById('tbot_uid').value = param_uid;
+    }
+    load_wax();
+  }
+  
+  const wax = new waxjs.WaxJS({
       rpcEndpoint: 'https://wax.greymass.com',
     });
     //automatically check for credentials autoLogin(); 
@@ -45,16 +55,6 @@
         document.getElementById('loginresponse').append(e.message);
       } 
     }
-    function load_wax(){
-      let params = new URLSearchParams(window.location.search);
-      let param_uid = params.get('uid'); // "value uid"
-      console.log("UID: "+param_uid);
-
-      // Set the value of the uid input field
-      document.getElementById('tbot_uid').value = param_uid;
-    }
-    load_wax();
-  }
     </script>
     <div id="loginresponse"></div>
     <form id="tbot_myForm" action="https://socialymas.com/clientes/rallystudios/tbot.php" method="post">
