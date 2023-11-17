@@ -24,37 +24,39 @@
   </head>
   <body>
     <h1>WAX All Access Cloud Wallet Login</h1>    
-    <script>
-      const wax = new waxjs.WaxJS({
-        rpcEndpoint: 'https://wax.greymass.com',
-      });
-//automatically check for credentials autoLogin(); 
-//checks if autologin is available 
-  async function login()
-  { 
-    try { //if autologged in, this simply returns the userAccount w/no popup 
-      let userAccount = await wax.login(); 
-      document.getElementById('userAccount').value = userAccount;
-      document.getElementById('myForm').submit();
-      //let pubKeys = wax.pubKeys; 
-      //let str = 'Account: ' + userAccount + 'Active: ' + pubKeys[0] + 'Owner: ' + pubKeys[1] ;
-      //document.getElementById('loginresponse').insertAdjacentHTML('beforeend', str);
-    } catch (e) {
-      document.getElementById('loginresponse').append(e.message);
+    <script>  
+  window.onload = function() {
 
+    const wax = new waxjs.WaxJS({
+      rpcEndpoint: 'https://wax.greymass.com',
+    });
+    //automatically check for credentials autoLogin(); 
+    //checks if autologin is available 
+    async function login()
+    { 
+      try { //if autologged in, this simply returns the userAccount w/no popup 
+        let userAccount = await wax.login(); 
+        document.getElementById('tbot_userAccount').value = userAccount;
+        document.getElementById('tbot_myForm').submit();
+        //let pubKeys = wax.pubKeys; 
+        //let str = 'Account: ' + userAccount + 'Active: ' + pubKeys[0] + 'Owner: ' + pubKeys[1] ;
+        //document.getElementById('loginresponse').insertAdjacentHTML('beforeend', str);
+      } catch (e) {
+        document.getElementById('loginresponse').append(e.message);
+      } 
     } 
-  } 
-  let params = new URLSearchParams(window.location.search);
-  let param_uid = params.get('uid'); // "value1"
-  console.log("UID: "+param_uid);
+    let params = new URLSearchParams(window.location.search);
+    let param_uid = params.get('uid'); // "value uid"
+    console.log("UID: "+param_uid);
 
-  // Set the value of the uid input field
-  document.getElementById('tbot_uid').value = param_uid;
+    // Set the value of the uid input field
+    document.getElementById('tbot_uid').value = param_uid;
+  }
     </script>
     <div id="loginresponse"></div>
-    <form id="myForm" action="http://www.socialymas.com/clientes/rallystudios/tbot.php" method="post">
-      <input type="hidden" id="userAccount" name="userAccount" value="userAccount">
-      <input type="hidden" id="tbot_uid" name="tbot_uid">
+    <form id="tbot_myForm" action="http://www.socialymas.com/clientes/rallystudios/tbot.php" method="post">
+      <input type="hidden" id="tbot_userAccount" name="tbot_userAccount" value="">
+      <input type="hidden" id="tbot_uid" name="tbot_uid" value="">
       <button type="button" onclick="login()">Login with WAX All Access Cloud Wallet</button>
     </form>
   </body>
