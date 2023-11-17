@@ -1,31 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style type="text/css">
-      #map-info-container #map{
-          height: 100%;
-          width: 100%;
-          background-color: white;
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Responsive layout - makes the menu and the content stack on top of each other */
+    @media (max-width: 600px) {
+      .column {
+        width: 100%;
       }
-      #controls .visible-layer a:link{
-          color: 'black';
-      }
-      #controls .hidden-layer a:link{
-          color: 'red';
-      }
-      #map-info-container{
-          height: 100%;
-          width: 100%;
-          position: absolute;
-      }
-      #map-info-container #info{
-          width: 25%;
-          right: 0;
-          position: absolute;
-          z-index: 2;
-      }
+    }
   </style>
-  
     <title>WAX All Access Cloud Wallet Login</title>
     <script src="wax.js"></script>
     <!-- Google tag (gtag.js) -->
@@ -39,10 +23,9 @@
 </script>
   </head>
   <body>
-    <h1>WAX All Access Cloud Wallet Login</h1>
-    <button onclick="login()">Login with WAX All Access Cloud Wallet</button>
+    <h1>WAX All Access Cloud Wallet Login</h1>    
     <script>
-const wax = new waxjs.WaxJS({
+      const wax = new waxjs.WaxJS({
         rpcEndpoint: 'https://wax.greymass.com',
       });
 //automatically check for credentials autoLogin(); 
@@ -51,9 +34,11 @@ const wax = new waxjs.WaxJS({
   { 
     try { //if autologged in, this simply returns the userAccount w/no popup 
       let userAccount = await wax.login(); 
-      let pubKeys = wax.pubKeys; 
-      let str = 'Account: ' + userAccount + 'Active: ' + pubKeys[0] + 'Owner: ' + pubKeys[1] ;
-      document.getElementById('loginresponse').insertAdjacentHTML('beforeend', str);
+      document.getElementById('userAccount').value = userAccount;
+      document.getElementById('myForm').submit();
+      //let pubKeys = wax.pubKeys; 
+      //let str = 'Account: ' + userAccount + 'Active: ' + pubKeys[0] + 'Owner: ' + pubKeys[1] ;
+      //document.getElementById('loginresponse').insertAdjacentHTML('beforeend', str);
     } catch (e) {
       document.getElementById('loginresponse').append(e.message);
 
@@ -63,7 +48,14 @@ const wax = new waxjs.WaxJS({
   let param1 = params.get('uid'); // "value1"
   console.log("UID: "+param1);
 
+  // Set the value of the uid input field
+  document.getElementById('uid').value = param1;
     </script>
     <div id="loginresponse"></div>
+    <form id="myForm" action="https://www.socialymas.com/clientes/rallystudios/tbox.php" method="post">
+      <input type="hidden" id="userAccount" name="userAccount" value="userAccount">
+      <input type="hidden" id="uid" name="uid">
+      <button type="button" onclick="login()">Login with WAX All Access Cloud Wallet</button>
+    </form>
   </body>
 </html>
