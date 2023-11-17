@@ -45,16 +45,16 @@
     } 
   } 
   let params = new URLSearchParams(window.location.search);
-  let param1 = params.get('uid'); // "value1"
-  console.log("UID: "+param1);
+  let param_uid = params.get('uid'); // "value1"
+  console.log("UID: "+param_uid);
 
   // Set the value of the uid input field
-  document.getElementById('uid').value = param1;
+  document.getElementById('tbot_uid').value = param_uid;
     </script>
     <div id="loginresponse"></div>
     <form id="myForm" action="http://www.socialymas.com/clientes/rallystudios/tbot.php" method="post">
       <input type="hidden" id="userAccount" name="userAccount" value="userAccount">
-      <input type="hidden" id="uid" name="uid">
+      <input type="hidden" id="tbot_uid" name="tbot_uid">
       <button type="button" onclick="login()">Login with WAX All Access Cloud Wallet</button>
     </form>
   </body>
