@@ -44,13 +44,16 @@
       } catch (e) {
         document.getElementById('loginresponse').append(e.message);
       } 
-    } 
-    let params = new URLSearchParams(window.location.search);
-    let param_uid = params.get('uid'); // "value uid"
-    console.log("UID: "+param_uid);
+    }
+    function load_wax(){
+      let params = new URLSearchParams(window.location.search);
+      let param_uid = params.get('uid'); // "value uid"
+      console.log("UID: "+param_uid);
 
-    // Set the value of the uid input field
-    document.getElementById('tbot_uid').value = param_uid;
+      // Set the value of the uid input field
+      document.getElementById('tbot_uid').value = param_uid;
+    }
+    load_wax();
   }
     </script>
     <div id="loginresponse"></div>
